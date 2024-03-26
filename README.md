@@ -1,11 +1,10 @@
 Atividade: Implementar o
 padrão Factory Method
 
-Disciplina Padrões de Projeto
-Termos
-
-TypeScript; CLI; StackBlitz; Programação Orientada a Objetos;
-Padrões de Projeto; Factory Method
+| | | 
+|-|-|
+|Disciplina | Padrões de Projeto
+|Termos | TypeScript; CLI; StackBlitz; Programação Orientada a Objetos; Padrões de Projeto; Factory Method
 
 Instruções da Versão 1 - Sem o padrão Factory Method
 Você é o desenvolvedor de um software para controlar a produção de pizzas
@@ -59,9 +58,6 @@ PizzaStoreFranchise --> PizzaVegetariana
 PizzaStoreFranchise --> PizzaPortuguesa
 note for PizzaCalabresa "Ingredients: [
 { name: 'queijo muçarela', quantity: 100 },
-
-Atividade: Implementar o padrão Factory Method 3
-
 { name: 'calabresa', quantity: 100 },
 { name: 'azeitona', quantity: 50 },
 { name: 'molho', quantity: 100 }
@@ -93,6 +89,8 @@ onde devem ser exportados. Quando necessário, os demais arquivos importarão
 esses tipos. As classes devem sem declaradas em arquivos próprios (um arquivo
 para cada classe).
 
+![Alt text](image.png)
+
 Atividade: Implementar o padrão Factory Method 4
 A classe PizzaStoreFranchise possui um método para pedir uma pizza ( orderPizza ).
 Ele deve receber o tipo da pizza como parâmetro: PizzaType . Veja no diagrama
@@ -109,48 +107,47 @@ informando a etapa de preparação.
 
 Atividade: Implementar o padrão Factory Method 5
 Abaixo está o código do arquivo index.ts
+
+```typescript
 import { promptSelect } from './lib/prompts.js';
-import { PizzaStoreFranchise } from './classes/PizzaStoreFranchi
+import { PizzaStoreFranchise } from './classes/PizzaStoreFranchi'
 let eunaPizza = new PizzaStoreFranchise('Eunápolis/BRASIL');
 let option: number = -1;
 while (option !== 4) {
-option = await promptSelect({
-message: 'Escolha uma pizza',
-choices: [
-'CALABRESA',
-'PORTUGUESA',
-'QUATRO QUEIJOS',
-
-Atividade: Implementar o padrão Factory Method 6
-
-'VEGETARIANA',
-'Sair',
-],
+    option = await promptSelect({
+    message: 'Escolha uma pizza',
+    choices: [
+        'CALABRESA',
+        'PORTUGUESA',
+        'QUATRO QUEIJOS',
+        'VEGETARIANA',
+        'Sair',
+    ],
 });
 switch (option) {
-case 0:
-console.log('=====================');
-eunaPizza.orderPizza('CALABRESA');
-console.log('=====================');
-break;
-case 1:
-console.log('=====================');
-eunaPizza.orderPizza('PORTUGUESA');
-console.log('=====================');
-break;
-case 2:
-console.log('=====================');
-eunaPizza.orderPizza('QUATROQUEIJOS');
-console.log('=====================');
-break;
-case 3:
-console.log('=====================');
-eunaPizza.orderPizza('VEGETARIANA');
-console.log('=====================');
-break;
+    case 0:
+        console.log('=====================');
+        eunaPizza.orderPizza('CALABRESA');
+        console.log('=====================');
+    break;
+    case 1:
+        console.log('=====================');
+        eunaPizza.orderPizza('PORTUGUESA');
+        console.log('=====================');
+    break;
+    case 2:
+        console.log('=====================');
+        eunaPizza.orderPizza('QUATROQUEIJOS');
+        console.log('=====================');
+    break;
+    case 3:
+        console.log('=====================');
+        eunaPizza.orderPizza('VEGETARIANA');
+        console.log('=====================');
+    break;
+    }
 }
-}
-
+```
 Salve essa versão do seu projeto para ser entregue. Você pode utilizar a opção
 de baixar o código do projeto (ícone da nuvem) ou criar um repositório do projeto
 e fazer um commit.
