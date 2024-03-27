@@ -1,8 +1,11 @@
 export enum PizzaType {
   CALABRESA,
   PORTUGUESA,
-VEGETARIANA,
-QUATROQUEIJOS,
+  VEGETARIANA,
+  QUATROQUEIJOS,
 }
 
-
+export enum PaisType {
+  BRAZIL,
+  JAMAICA
+}

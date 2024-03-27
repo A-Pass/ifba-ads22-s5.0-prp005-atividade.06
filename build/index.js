@@ -1,39 +1,64 @@
 import { promptSelect } from './lib/prompts.js';
-import { PizzaStoreFranchise } from './classes/PizzaStoreFranchise.js';
 import { PizzaType } from './classes/types.js';
-let eunaPizza = new PizzaStoreFranchise('Eunápolis/BRASIL');
-let option = -1;
-while (option !== 4) {
-    option = await promptSelect({
-        message: 'Escolha uma pizza',
+import { PizzaStorBrazil } from './classes/PizzaStoreBrazil.js';
+import { PizzaStoreJamaica } from './classes/PizzaStoreJamaica.js';
+let optionCity = -1;
+let pizzaria;
+while (optionCity != 2) {
+    optionCity = await promptSelect({
+        message: 'Escolha a pizzaria',
         choices: [
-            'CALABRESA',
-            'PORTUGUESA',
-            'QUATRO QUEIJOS',
-            'VEGETARIANA',
+            'Brazil',
+            'Jamaica',
             'Sair',
         ],
     });
-    switch (option) {
+    switch (optionCity) {
         case 0:
-            console.log('=====================');
-            eunaPizza.orderPizza(PizzaType.CALABRESA);
-            console.log('=====================');
+            pizzaria = new PizzaStorBrazil("Eunápolis/BRASIL");
             break;
         case 1:
-            console.log('=====================');
-            eunaPizza.orderPizza(PizzaType.PORTUGUESA);
-            console.log('=====================');
+            pizzaria = new PizzaStoreJamaica('Kingston,/JAMAICA');
             break;
-        case 2:
-            console.log('=====================');
-            eunaPizza.orderPizza(PizzaType.QUATROQUEIJOS);
-            console.log('=====================');
-            break;
-        case 3:
-            console.log('=====================');
-            eunaPizza.orderPizza(PizzaType.VEGETARIANA);
-            console.log('=====================');
-            break;
+        default:
+            pizzaria = undefined;
+            console.log('Opção inválida!');
+    }
+    if (pizzaria != undefined) {
+        let optionPizza = -1;
+        while (optionPizza !== 4) {
+            optionPizza = await promptSelect({
+                message: 'Escolha uma pizza',
+                choices: [
+                    'CALABRESA',
+                    'PORTUGUESA',
+                    'QUATRO QUEIJOS',
+                    'VEGETARIANA',
+                    'Sair',
+                ],
+            });
+            switch (optionPizza) {
+                case 0:
+                    console.log('=====================');
+                    pizzaria.orderPizza(PizzaType.CALABRESA);
+                    console.log('=====================');
+                    break;
+                case 1:
+                    console.log('=====================');
+                    pizzaria.orderPizza(PizzaType.PORTUGUESA);
+                    console.log('=====================');
+                    break;
+                case 2:
+                    console.log('=====================');
+                    pizzaria.orderPizza(PizzaType.QUATROQUEIJOS);
+                    console.log('=====================');
+                    break;
+                case 3:
+                    console.log('=====================');
+                    pizzaria.orderPizza(PizzaType.VEGETARIANA);
+                    console.log('=====================');
+                    break;
+            }
+        }
     }
 }

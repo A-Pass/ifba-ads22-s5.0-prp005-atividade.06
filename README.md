@@ -15,21 +15,28 @@ o digrama de classes abaixo:
 
 classDiagram
 class PizzaStoreFranchise {
-- name: string
-+ getName() string
-+ orderPizza(type: PizzaType)
+    <<abstract>>
+    - name: string
+    + getName() string
+    # createIngredient(name: string, quantity: number) IngredientType
+    # createPizza() Pizza*
+    + orderPizza(type: PizzaType)
 }
+
+PizzaStoreFranchise <|-- PizzaStoreJamaica
+PizzaStoreFranchise <|-- PizzaStoreBrazil
+IngredientType <-- PizzaStoreFranchise
+Pizza <-- PizzaStoreFranchise
+
 class Pizza {
 <<abstract>>
 + constructor(ingredients: Array~IngredientType~)
 + prepare()
 + bake()
-
-Atividade: Implementar o padrão Factory Method 2
-
 + cut()
 + box()
 }
+
 class PizzaCalabresa
 class PizzaQuatroQueijos
 class PizzaVegetariana
@@ -52,35 +59,65 @@ PizzaQuatroQueijos --|> Pizza
 PizzaVegetariana --|> Pizza
 PizzaPortuguesa --|> Pizza
 PizzaStoreFranchise --> PizzaType
-PizzaStoreFranchise --> PizzaCalabresa
-PizzaStoreFranchise --> PizzaQuatroQueijos
-PizzaStoreFranchise --> PizzaVegetariana
-PizzaStoreFranchise --> PizzaPortuguesa
-note for PizzaCalabresa "Ingredients: [
-{ name: 'queijo muçarela', quantity: 100 },
-{ name: 'calabresa', quantity: 100 },
-{ name: 'azeitona', quantity: 50 },
-{ name: 'molho', quantity: 100 }
+
+note for PizzaCalabresa "Ingredients Brasil: [
+    { name: 'queijo muçarela', quantity: 100 },
+    { name: 'calabresa', quantity: 100 },
+    { name: 'azeitona', quantity: 50 },
+    { name: 'molho', quantity: 100 }
+]
+Ingredients Jamaica: [
+    { name: 'queijo muçarela', quantity: 100 },
+    { name: 'calabresa', quantity: 100 },
+    { name: 'azeitona', quantity: 50 },
+    { name: 'molho', quantity: 100 }
+    {  name: 'pimentão jamaicano', quantity: 50}
 ]"
-note for PizzaPortuguesa "Ingredients: [
-{ name: 'queijo muçarela', quantity: 100 },
-{ name: 'tomate', quantity: 100 },
-{ name: 'ovo cozido', quantity: 50 },
-{ name: 'cebola', quantity: 50 },
-{ name: 'molho', quantity: 100 },
+
+note for PizzaPortuguesa "Ingredients Brasil: [
+    { name: 'queijo muçarela', quantity: 100 },
+    { name: 'tomate', quantity: 100 },
+    { name: 'ovo cozido', quantity: 50 },
+    { name: 'cebola', quantity: 50 },
+    { name: 'molho', quantity: 100 },
+]
+Ingredients Jamaica: [
+    { name: 'queijo muçarela', quantity: 100 },
+    { name: 'tomate', quantity: 100 },
+    { name: 'ovo cozido', quantity: 50 },
+    { name: 'cebola', quantity: 50 },
+    { name: 'molho', quantity: 100 }
+    { name: 'pimentão jamaicano', quantity: 25}
 ]"
-note for PizzaVegetariana "Ingredients: [
-{ name: 'queijo muçarela', quantity: 100 },
-{ name: 'berinjela', quantity: 200 },
-{ name: 'azeitonas', quantity: 50 },
-{ name: 'molho', quantity: 100 },
+
+note for PizzaVegetariana "Ingredients Brasil: [
+    { name: 'queijo muçarela', quantity: 100 },
+    { name: 'berinjela', quantity: 200 },
+    { name: 'azeitonas', quantity: 50 },
+    { name: 'molho', quantity: 100 },
+]
+Ingredients Jamaica: [
+    { name: 'queijo muçarela', quantity: 100 },
+    { name: 'berinjela', quantity: 200 },
+    { name: 'azeitonas', quantity: 50 },
+    { name: 'molho', quantity: 100 },
+    { name: 'pimentão jamaicano', quantity: 25}
 ]"
-note for PizzaQuatroQueijos "Ingredients: [
-{ name: 'queijo muçarela', quantity: 50 },
-{ name: 'queijo gorgonzola', quantity: 50 },
-{ name: 'queijo provolone', quantity: 50 },
-{ name: 'queijo parmesão', quantity: 50 },
-{ name: 'molho', quantity: 100 },
+
+note for PizzaQuatroQueijos "Ingredients Brasil: [
+    { name: 'queijo muçarela', quantity: 50 },
+    { name: 'queijo gorgonzola', quantity: 50 },
+    { name: 'queijo provolone', quantity: 50 },
+    { name: 'queijo parmesão', quantity: 50 },
+    { name: 'molho', quantity: 100 }
+]
+Ingredients Jamaica: [
+    { name: 'queijo muçarela', quantity: 50 },
+    { name: 'queijo gorgonzola', quantity: 50 },
+    { name: 'queijo provolone', quantity: 50 },
+    { name: 'queijo parmesão', quantity: 50 },
+    { name: 'molho', quantity: 100 },
+    { name: 'pimentão jamaicano', quantity: 75}
 ]"
 ```
 
